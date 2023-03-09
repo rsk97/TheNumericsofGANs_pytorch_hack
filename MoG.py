@@ -41,10 +41,13 @@ if __name__ == "__main__":
         gen_out, real_in, fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out = batch_net_outputs(gen_net, disc_net, batch_size, z_dim, sigma, device)
         gen_loss_detached, disc_loss_detached, gen_loss, disc_loss = net_losses(criterion, fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out)
 
+        if i==0:
+            plot_kde(0,method, sigma, gen_net, path, device, batch_size, z_dim, real_input=True)
+
         if i%5000 == 0:
             if method == 'ConsOpt':
                 plot_eigens(i, gen_net, disc_net, params, gamma, path, batch_size, z_dim, sigma, criterion, device)
-            plot_kde(i,  method, sigma, gen_net, path, device, batch_size, z_dim, real_input=False)
+            plot_kde(i, method, sigma, gen_net, path, device, batch_size, z_dim, real_input=False)
         
             gen_path = join(path, 'Models', 'gen_' + method + "_" + str(i) + '.pt')
             disc_path = join(path, 'Models', 'disc_'+ method + "_" + str(i) + '.pt')
