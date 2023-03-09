@@ -25,7 +25,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 path = '/home/mila/r/rohan.sukumaran/repos/TheNumericsofGANs_pytorch/results/'
 
 
-if "name" == "__main__":
+if __name__ == "__main__":
     gen_net = Gen(16, 2).to(device)
     disc_net = Dis(2, 1).to(device)
 
