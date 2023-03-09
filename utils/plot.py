@@ -1,4 +1,5 @@
 import torch
+import numpy as np
 from os.path import join
 from torch import autograd
 from utils.utils import batch_net_outputs, net_losses, complex_scatter_plot, kde
@@ -38,7 +39,7 @@ def plot_eigens(iteration, gen, disc, params, gamma, path, device):
     complex_scatter_plot(eigens2.cpu().detach().numpy(), bbox=[-1.0, 1.0, -0.15, 0.15], save_file=save_path, cmap=cmap)
 
 
-def plot_kde(iteration, method, sigma, gen, disc, params, gamma, path, device, batch_size, z_dim, real_input=False):
+def plot_kde(iteration, method, sigma, gen, path, device, batch_size, z_dim, real_input=False):
     z = torch.normal(mean=0, std=1, size=[batch_size * 5, z_dim]).to(device)
     inp = gen(z)
 
