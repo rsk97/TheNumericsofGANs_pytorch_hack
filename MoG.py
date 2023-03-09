@@ -1,8 +1,7 @@
-import tqdm 
-import sys, os
 from os.path import join
 
 import torch
+import torch.nn as nn
 import torch.optim as optim
 from torch import autograd
 from models.gan import Gen, Dis
@@ -34,10 +33,13 @@ if __name__ == "__main__":
     gen_opt = optim.RMSprop(gen_net.parameters(), lr=lr)
     disc_opt = optim.RMSprop(disc_net.parameters(), lr=lr)
 
+    criterion = nn.BCEWithLogitsLoss()
+
+
     for i in range(steps+1):
 
         gen_out, real_in, fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out = batch_net_outputs(gen_net, disc_net, batch_size, z_dim, sigma, device)
-        gen_loss_detached, disc_loss_detached, gen_loss, disc_loss = net_losses(fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out)
+        gen_loss_detached, disc_loss_detached, gen_loss, disc_loss = net_losses(criterion, fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out)
 
         if i%5000 == 0:
             if method == 'ConsOpt':
