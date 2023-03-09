@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     for i in range(steps+1):
 
-        gen_out, real_in, fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out = batch_net_outputs()
+        gen_out, real_in, fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out = batch_net_outputs(gen_net, disc_net, batch_size, z_dim, sigma, device)
         gen_loss_detached, disc_loss_detached, gen_loss, disc_loss = net_losses(fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out)
 
         if i%5000 == 0:
