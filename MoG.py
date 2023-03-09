@@ -43,7 +43,7 @@ if __name__ == "__main__":
 
         if i%5000 == 0:
             if method == 'ConsOpt':
-                plot_eigens(i, gen_net, disc_net, params, gamma, path, device)
+                plot_eigens(i, gen_net, disc_net, params, gamma, path, batch_size, z_dim, sigma, criterion, device)
             plot_kde(i,  method, sigma, gen_net, path, device, batch_size, z_dim, real_input=False)
         
             gen_path = join(path, 'Models', 'gen_' + method + "_" + str(i) + '.pt')

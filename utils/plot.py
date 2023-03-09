@@ -6,9 +6,9 @@ from utils.utils import batch_net_outputs, net_losses, complex_scatter_plot, kde
 
 
 
-def plot_eigens(iteration, gen, disc, params, gamma, path, device):
-    _, _, fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out = batch_net_outputs()
-    _, _, gen_loss, disc_loss = net_losses(fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out)
+def plot_eigens(iteration, gen, disc, params, gamma, path,  batch_size, z_dim, sigma, criterion, device):
+    _, _, fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out = batch_net_outputs(gen, disc, batch_size, z_dim, sigma, device)
+    _, _, gen_loss, disc_loss = net_losses(criterion, fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out)
     p_count = torch.cat([x.flatten() for x in params]).shape[0]
 
     gen.zero_grad()
