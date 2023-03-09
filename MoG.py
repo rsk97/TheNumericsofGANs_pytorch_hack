@@ -34,7 +34,7 @@ if __name__ == "__main__":
     gen_opt = optim.RMSprop(gen_net.parameters(), lr=lr)
     disc_opt = optim.RMSprop(disc_net.parameters(), lr=lr)
 
-    for i in tqdm(range(steps+1)):
+    for i in range(steps+1):
 
         gen_out, real_in, fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out = batch_net_outputs()
         gen_loss_detached, disc_loss_detached, gen_loss, disc_loss = net_losses(fake_d_out_gen, fake_d_out_disc, fake_d_out, real_d_out)
