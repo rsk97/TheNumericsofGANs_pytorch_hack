@@ -5,4 +5,4 @@ Code Implementation adapted from:
 - https://github.com/ReyhaneAskari/Least_action_dynamics_minmax/blob/main/Fig_2_8Gaussians_compare/co_8g.py
 - https://github.com/LMescheder/TheNumericsOfGANs
 
-Special thanks to - Rozhin Nobahari and Reyhane Askari for their help in pointing out relevant resources/sharing thier earlier versions of code.
+Special thanks to - Rozhin Nobahari and Reyhane Askari for their help in pointing out relevant resources/sharing their earlier versions of code.
